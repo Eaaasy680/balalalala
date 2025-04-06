@@ -60,7 +60,7 @@
                 <!-- 这里没有具体歌词，适合纯音乐 -->
             </div>
         </div>
-        <!-- 添加多个音频格式支持 -->
+        <!-- 提供多种音频格式支持 -->
         <audio id="music">
             <source src="enhance.mid" type="audio/midi">
             <source src="enhance.mp3" type="audio/mpeg">
@@ -74,19 +74,21 @@
         const playPauseBtn = document.getElementById('play-pause');
         const music = document.getElementById('music');
 
-        playPauseBtn.addEventListener('click', () => {
-            if (music.paused) {
-                music.play().catch((error) => {
-                    console.error('播放音乐时出错:', error);
-                });
-                cdCover.classList.remove('pause-rotation');
-                playPauseBtn.classList.remove('fa-circle-play');
-                playPauseBtn.classList.add('fa-circle-pause');
-            } else {
-                music.pause();
-                cdCover.classList.add('pause-rotation');
-                playPauseBtn.classList.remove('fa-circle-pause');
-                playPauseBtn.classList.add('fa-circle-play');
+        playPauseBtn.addEventListener('click', async () => {
+            try {
+                if (music.paused) {
+                    await music.play();
+                    cdCover.classList.remove('pause-rotation');
+                    playPauseBtn.classList.remove('fa-circle-play');
+                    playPauseBtn.classList.add('fa-circle-pause');
+                } else {
+                    music.pause();
+                    cdCover.classList.add('pause-rotation');
+                    playPauseBtn.classList.remove('fa-circle-pause');
+                    playPauseBtn.classList.add('fa-circle-play');
+                }
+            } catch (error) {
+                console.error('播放音乐时出现错误:', error);
             }
         });
     </script>
