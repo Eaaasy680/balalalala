@@ -1,0 +1,68 @@
+!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <title>起风了 CD 机</title>
+    <style>
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rotate-cd {
+            animation: rotate 10s linear infinite;
+        }
+
+        .pause-rotation {
+            animation-play-state: paused;
+        }
+
+        .lyrics-container {
+            height: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .lyrics {
+            position: absolute;
+            top: 100%;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                top: 100%;
+            }
+            to {
+                top: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center space-y-6">
+        <div class="relative">
+            <img id="cd-cover" src="C:\Users\Lenovo\Desktop\CD封面" alt="CD Cover" class="w-64 h-64 rounded-full border-4 border-gray-300 rotate-cd">
+            <i class="fa-solid fa-circle-play absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-4xl text-white cursor-pointer"
+                id="play-pause"></i>
+        </div>
+        <div class="lyrics-container w-full overflow-hidden">
+            <div class="lyrics text-center text-gray-700">
+                <!-- 这里没有具体歌词，适合纯音乐 -->
+            </div>
+        </div>
+        <audio id="music" src="D:\PythonProject1\enhance.mid"></audio>
+    </div>
+
+    <script>
+        const cdCover = document.getElementById('cd-cover');
+    
